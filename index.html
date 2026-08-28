@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Bob — Solutions Engineer</title>
+<meta name="description" content="Solutions Engineer portfolio — translating technical complexity into plain English.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    color-scheme: light;
+    --bg: #E7EEE4;
+    --bg-alt: #F4F8F1;
+    --bg-alt2: #DBE5D5;
+    --ink: #1E2A1C;
+    --ink-dim: #57654F;
+    --tech: #35594F;
+    --human: #A6472B;
+    --line: #C7D1BF;
+    --mono: 'IBM Plex Mono', ui-monospace, monospace;
+    --serif: 'Newsreader', Georgia, serif;
+    --max: 760px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; background:var(--bg);}
+  body{
+    margin:0;
+    min-height:100vh;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--serif);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--tech);}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--human); outline-offset:3px;}
+
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 24px;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:20;
+    background:rgba(231,238,228,0.88);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 24px;
+    font-family:var(--mono); font-size:12px; letter-spacing:.06em;
+  }
+  nav .brand{color:var(--ink); text-decoration:none; font-weight:600;}
+  nav .brand span{color:var(--tech);}
+  nav ul{list-style:none; display:flex; gap:20px; margin:0; padding:0;}
+  nav a{color:var(--ink-dim); text-decoration:none; text-transform:uppercase;}
+  nav a:hover{color:var(--human);}
+
+  /* ---------- HERO ---------- */
+  header.hero{padding:88px 0 64px; border-bottom:1px solid var(--line);}
+  .eyebrow{
+    font-family:var(--mono); font-size:12px; letter-spacing:.12em;
+    color:var(--tech); text-transform:uppercase; margin:0 0 22px;
+  }
+  .eyebrow::before{content:"// "; color:var(--ink-dim);}
+
+  .translate-line{
+    font-family:var(--mono); font-size:clamp(15px,3.4vw,19px);
+    color:var(--ink-dim); margin:0 0 6px; min-height:1.5em;
+  }
+  .translate-line .cursor{
+    display:inline-block; width:8px; height:1em; background:var(--tech);
+    vertical-align:-2px; animation:blink 1s steps(1) infinite;
+  }
+  @keyframes blink{50%{opacity:0;}}
+
+  h1.headline{
+    font-family:var(--serif); font-weight:500;
+    font-size:clamp(32px,6vw,52px);
+    line-height:1.12; margin:10px 0 26px; color:var(--ink);
+    min-height:2.4em;
+  }
+  h1.headline .accent{color:var(--human); font-style:italic;}
+
+  .hero-sub{
+    max-width:56ch; color:var(--ink-dim); font-size:17px; margin:0 0 34px;
+  }
+  .hero-sub strong{color:var(--ink); font-weight:600;}
+
+  .cta-row{display:flex; flex-wrap:wrap; gap:12px;}
+  .btn{
+    font-family:var(--mono); font-size:13px; letter-spacing:.03em;
+    padding:11px 18px; border-radius:3px; text-decoration:none;
+    border:1px solid var(--line); color:var(--ink);
+    transition:border-color .15s ease, color .15s ease;
+  }
+  .btn:hover{border-color:var(--tech); color:var(--tech);}
+  .btn.primary{background:var(--human); color:#F4F8F1; border-color:var(--human); font-weight:600;}
+  .btn.primary:hover{opacity:.9; color:#171308;}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:72px 0; border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+  .section-tag{
+    font-family:var(--mono); font-size:12px; color:var(--tech);
+    letter-spacing:.12em; text-transform:uppercase; margin:0 0 8px;
+  }
+  .section-tag::before{content:"// ";}
+  h2{
+    font-family:var(--serif); font-weight:500; font-size:clamp(24px,4vw,32px);
+    margin:0 0 32px; color:var(--ink);
+  }
+
+  /* ---------- ABOUT / TIMELINE ---------- */
+  .bio{max-width:62ch; color:var(--ink-dim); font-size:16.5px; margin-bottom:40px;}
+  .bio strong{color:var(--ink); font-weight:600;}
+
+  .timeline{border-left:1px solid var(--line); padding-left:24px; display:grid; gap:26px;}
+  .tl-item{position:relative;}
+  .tl-item::before{
+    content:""; position:absolute; left:-29px; top:6px;
+    width:9px; height:9px; border-radius:50%;
+    background:var(--bg); border:2px solid var(--tech);
+  }
+  .tl-item.current::before{background:var(--human); border-color:var(--human);}
+  .tl-role{font-family:var(--mono); font-size:13px; color:var(--human); margin:0 0 4px;}
+  .tl-desc{margin:0; color:var(--ink-dim); font-size:15.5px;}
+  .tl-desc strong{color:var(--ink);}
+
+  /* ---------- TRANSLATION LOG (projects) ---------- */
+  .log-entry{
+    background:var(--bg-alt);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:26px 26px 24px;
+    margin-bottom:22px;
+  }
+  .log-title{
+    font-family:var(--serif); font-weight:600; font-size:20px;
+    color:var(--ink); margin:0 0 4px;
+  }
+  .log-kicker{
+    font-family:var(--mono); font-size:11.5px; color:var(--ink-dim);
+    text-transform:uppercase; letter-spacing:.08em; margin:0 0 18px;
+  }
+  .translate-pair{display:grid; gap:10px;}
+  .t-tech, .t-human{
+    display:grid; grid-template-columns:22px 1fr; gap:10px; align-items:start;
+  }
+  .t-tech .mark{color:var(--tech); font-family:var(--mono);}
+  .t-human .mark{color:var(--human); font-family:var(--serif); font-style:italic;}
+  .t-tech p{
+    font-family:var(--mono); font-size:13.5px; color:var(--ink-dim);
+    margin:0; line-height:1.55;
+  }
+  .t-human p{
+    font-family:var(--serif); font-size:16px; color:var(--ink);
+    margin:0; line-height:1.5;
+  }
+  .log-link{
+    display:inline-block; margin-top:16px; font-family:var(--mono);
+    font-size:12.5px; color:var(--tech); text-decoration:none;
+    border-bottom:1px solid transparent;
+  }
+  .log-link:hover{border-bottom-color:var(--tech);}
+
+  /* ---------- TRACK RECORD ---------- */
+  .stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:20px;}
+  .stat{
+    border:1px solid var(--line); border-radius:6px; padding:22px 20px;
+    background:var(--bg-alt2);
+  }
+  .stat-num{
+    font-family:var(--mono); font-size:26px; color:var(--human); margin:0 0 8px;
+    font-weight:600;
+  }
+  .stat-label{margin:0; color:var(--ink-dim); font-size:14.5px; line-height:1.5;}
+
+  /* ---------- FOOTER ---------- */
+  footer{padding:56px 0 72px;}
+  footer .wrap{display:flex; flex-direction:column; gap:18px;}
+  footer h2{margin-bottom:10px;}
+  .contact-row{display:flex; flex-wrap:wrap; gap:14px; font-family:var(--mono); font-size:13px;}
+  .contact-row a{color:var(--ink-dim); text-decoration:none;}
+  .contact-row a:hover{color:var(--human);}
+  .fine-print{color:var(--ink-dim); font-size:12.5px; font-family:var(--mono); margin-top:24px;}
+
+  @media (prefers-reduced-motion: reduce){
+    .cursor{animation:none;}
+    html{scroll-behavior:auto;}
+  }
+
+  @media (max-width:560px){
+    nav ul{gap:14px;}
+    header.hero{padding:64px 0 48px;}
+    section{padding:52px 0;}
+    .t-tech, .t-human{grid-template-columns:16px 1fr;}
+  }
+
+  @media print{
+    html, body{background:var(--bg) !important;}
+    *{-webkit-print-color-adjust:exact !important; print-color-adjust:exact !important;}
+    nav{position:static;}
+    section, .log-entry, .stat, .tl-item{break-inside:avoid;}
+    p{orphans:3; widows:3;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top">bob<span>.</span>dev</a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#record">Track Record</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <p class="eyebrow">solutions engineer — reads both languages</p>
+    <p class="translate-line" id="typeTech" aria-hidden="true"></p>
+    <h1 class="headline" id="typeHuman">
+      <noscript>I turn "the API returns a 429 on rate limit" into "just space out your requests — here's how."</noscript>
+    </h1>
+    <p class="hero-sub">
+      I'm <strong>Bob</strong>. Nine years in the classroom, five years at Clever, and most
+      recently Solutions Engineer at Edia, a K–12 AI company spanning AI math, AI attendance,
+      and district intelligence — one skill carried through
+      all of it: <strong>translating technical complexity into plain English</strong> — for
+      teachers, districts, and engineering teams alike.
+    </p>
+    <div class="cta-row">
+      <a class="btn primary" href="#projects">See the work</a>
+      <a class="btn" href="mailto:bob.a.mayer@gmail.com">Email me</a>
+      <a class="btn" href="https://www.linkedin.com/in/Bob-Mayer" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <p class="section-tag">about</p>
+    <h2>Teacher first. Translator always.</h2>
+    <p class="bio">
+      I spent <strong>nine years teaching K–12</strong> before moving into edtech —
+      first in <strong>Solutions Engineering and Technical Support at Clever</strong>,
+      most recently as the <strong>first Solutions Engineer at Edia</strong>. Every stop has needed
+      the same core move: sit between a technical system and the person who has to trust
+      it, and make sure nothing gets lost in the handoff.
+    </p>
+    <div class="timeline">
+      <div class="tl-item">
+        <p class="tl-role">K–12 Classroom Teacher · ~9 years</p>
+        <p class="tl-desc">Learned to explain hard things to people who didn't ask to find them hard — the root skill everything after this drew on.</p>
+      </div>
+      <div class="tl-item">
+        <p class="tl-role">Solutions Engineering &amp; Technical Support · Clever · ~5 years</p>
+        <p class="tl-desc"><strong>Prevented churn</strong> across 100k-student districts, led the <strong>Infinite Campus API deprecation</strong> with 100% retention, and <strong>redesigned onboarding</strong> for a 55+ person team — cutting ramp time by 1–3 weeks and escalations by roughly half.</p>
+      </div>
+      <div class="tl-item">
+        <p class="tl-role">Solutions Engineer · Edia · 2026</p>
+        <p class="tl-desc">First person in this role at the company — built the onboarding playbook from scratch, since none existed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <p class="section-tag">translation log</p>
+    <h2>What I've built, in both languages</h2>
+
+    <div class="log-entry">
+      <p class="log-title">Of Note</p>
+      <p class="log-kicker">AI-powered note-taking web app · deployed</p>
+      <div class="translate-pair">
+        <div class="t-tech"><span class="mark">&gt;</span><p>An LLM API call chain layered over freeform text input, shipped as a deployed web app.</p></div>
+        <div class="t-human"><span class="mark">“</span><p>Type your thoughts however messy they come out — it hands you back clean, organized notes.</p></div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <p class="log-title">Artist's Mannequin</p>
+      <p class="log-kicker">3D posable tool · deployed on Cloudflare Pages</p>
+      <div class="translate-pair">
+        <div class="t-tech"><span class="mark">&gt;</span><p>A posable 3D humanoid mesh rendered in-browser, deployed on Cloudflare's edge network.</p></div>
+        <div class="t-human"><span class="mark">“</span><p>A digital artist's mannequin you can pose and rotate right in your browser — no software, no login.</p></div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <p class="log-title">Six-Week Habit Tracker</p>
+      <p class="log-kicker">Personal habit tracker · GitHub Pages</p>
+      <div class="translate-pair">
+        <div class="t-tech"><span class="mark">&gt;</span><p>A static site implementing a six-week habit-cycle model, currently evaluating cross-device persistence for a no-backend architecture.</p></div>
+        <div class="t-human"><span class="mark">“</span><p>A habit tracker built around six-week seasons instead of daily streaks — because real change happens in cycles, not single days.</p></div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <p class="log-title">Chronos</p>
+      <p class="log-kicker">AI executive assistant · built on chronobiology (circadian &amp; ultradian rhythms) · in development</p>
+      <div class="translate-pair">
+        <div class="t-tech"><span class="mark">&gt;</span><p>An AI executive assistant that models your circadian and ultradian rhythms alongside sleep, mood, and weekly load to sequence your day — model-agnostic across Claude, ChatGPT, and Gemini, with a mid-day replanning loop.</p></div>
+        <div class="t-human"><span class="mark">“</span><p>Less a planner, more an assistant who actually knows when you're sharp and when you're running on fumes — and builds your day around that, not against it.</p></div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <p class="log-title">SE Enablement, from Zero</p>
+      <p class="log-kicker">Edia onboarding infrastructure · internal</p>
+      <div class="translate-pair">
+        <div class="t-tech"><span class="mark">&gt;</span><p>Built a CSE reference doc, a Claude Project knowledge base, and a recurring content pipeline as the first Solutions Engineer hire — no prior playbook existed.</p></div>
+        <div class="t-human"><span class="mark">“</span><p>When I joined, there was no manual for this role — so I wrote one, for myself and whoever comes after me.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="record">
+  <div class="wrap">
+    <p class="section-tag">track record</p>
+    <h2>Numbers from the Clever years</h2>
+    <div class="stats">
+      <div class="stat">
+        <p class="stat-num">100k+</p>
+        <p class="stat-label">student-district churn prevented through direct account intervention</p>
+      </div>
+      <div class="stat">
+        <p class="stat-num">100%</p>
+        <p class="stat-label">retention through the Infinite Campus API deprecation I led</p>
+      </div>
+      <div class="stat">
+        <p class="stat-num">1–3 wks</p>
+        <p class="stat-label">cut from ramp time after redesigning onboarding for 55+ people</p>
+      </div>
+      <div class="stat">
+        <p class="stat-num">~50%</p>
+        <p class="stat-label">reduction in escalations from that same onboarding redesign</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <p class="section-tag">get in touch</p>
+    <h2>Let's talk translation</h2>
+    <p class="bio" style="margin-bottom:0;">I'm looking for my next Solutions Engineering role. If you're hiring for one that needs someone fluent in both the technical and the human side of the table, I'd like to hear about it.</p>
+    <div class="contact-row">
+      <a href="mailto:bob.a.mayer@gmail.com">bob.a.mayer@gmail.com</a>
+      <a href="https://www.linkedin.com/in/Bob-Mayer" target="_blank" rel="noopener">linkedin.com/in/Bob-Mayer</a>
+    </div>
+    <p class="fine-print">Built and hosted on GitHub Pages.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var techEl = document.getElementById('typeTech');
+  var humanEl = document.getElementById('typeHuman');
+  var techLine = '> throws a 429 on rate limit exceeded';
+  var humanLine = 'I turn that into: "just space out your requests — here\\'s how."';
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (reduceMotion) {
+    techEl.textContent = techLine;
+    humanEl.textContent = humanLine;
+    return;
+  }
+
+  function typeInto(el, text, delay, done){
+    var i = 0;
+    el.textContent = '';
+    var cursor = document.createElement('span');
+    cursor.className = 'cursor';
+    function step(){
+      if(i <= text.length){
+        el.textContent = text.slice(0,i);
+        el.appendChild(cursor);
+        i++;
+        setTimeout(step, delay);
+      } else if (done) {
+        done();
+      }
+    }
+    step();
+  }
+
+  typeInto(techEl, techLine, 28, function(){
+    setTimeout(function(){
+      typeInto(humanEl, humanLine, 22);
+    }, 350);
+  });
+})();
+</script>
+
+</body>
+</html>
