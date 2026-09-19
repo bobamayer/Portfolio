@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Bob Mayer — Solutions Engineer</title>
+<meta name="description" content="Solutions Engineer portfolio — translating technical complexity into plain English.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    color-scheme: light;
+
+    /* Even Keel — Color */
+    --teal: #3F6664;
+    --teal-hover: #355453;
+    --teal-deep: #26403F;
+    --plum: #6B5361;
+    --brick: #9C4B3D;
+    --fog: #E3E4DC;
+    --paper: #ECEBE2;
+    --moss: #292E26;
+    --moss-muted: #5B6358;
+    --line: rgba(41,46,38,0.12);
+    --line-strong: rgba(41,46,38,0.18);
+    --tag-teal-bg: #DEE0D8;
+    --tag-plum-bg: #E2DFD8;
+    --tag-brick-bg: #E6DED5;
+
+    /* Type */
+    --font-heading: 'Lora', Georgia, serif;
+    --font-body: 'Public Sans', system-ui, sans-serif;
+
+    /* Spacing (8px base) */
+    --space-1: 4px;  --space-2: 8px;  --space-3: 12px;
+    --space-4: 16px; --space-5: 24px; --space-6: 32px;
+    --space-7: 48px; --space-8: 64px; --space-9: 96px;
+
+    /* Elevation */
+    --shadow-rest: 0 1px 2px rgba(41,46,38,0.06), 0 8px 16px rgba(41,46,38,0.08);
+    --shadow-raised: 0 4px 8px rgba(41,46,38,0.10), 0 16px 32px rgba(41,46,38,0.14);
+    --shadow-floating: 0 8px 16px rgba(41,46,38,0.14), 0 32px 64px rgba(41,46,38,0.18);
+
+    /* Spacious preset — portfolio */
+    --radius: 20px;
+    --motion: 420ms ease-out;
+    --max: 760px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; background:var(--fog);}
+  body{
+    margin:0;
+    min-height:100vh;
+    background:var(--fog);
+    color:var(--moss);
+    font-family:var(--font-body);
+    font-size:17px;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:var(--font-heading); font-weight:400; font-style:normal; color:var(--moss); margin:0;}
+  a{color:var(--teal); text-decoration:none;}
+  a:focus-visible, button:focus-visible{outline:2px solid rgba(63,102,100,0.4); outline-offset:2px;}
+
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 var(--space-5);}
+
+  /* ---------- NAV (Spacious: floating) ---------- */
+  .nav-outer{position:sticky; top:var(--space-4); z-index:20; padding:0 var(--space-5);}
+  nav{
+    max-width:var(--max); margin:0 auto;
+    background:var(--paper);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow-raised);
+  }
+  nav .inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:var(--space-3) var(--space-5);
+  }
+  nav .brand{
+    font-family:var(--font-heading); font-size:17px; color:var(--moss); text-decoration:none;
+  }
+  nav .brand span{color:var(--teal);}
+  nav ul{list-style:none; display:flex; gap:var(--space-5); margin:0; padding:0;}
+  nav a{color:var(--moss-muted); text-decoration:none; font-size:14px; font-weight:600;}
+  nav a:hover{color:var(--teal);}
+
+  /* ---------- HERO ---------- */
+  header.hero{padding:var(--space-9) 0 var(--space-8);}
+  .eyebrow{
+    font-family:var(--font-body); font-size:13px; font-weight:600; letter-spacing:.06em;
+    color:var(--teal); text-transform:uppercase; margin:0 0 var(--space-5);
+  }
+  .translate-line{
+    font-family:var(--font-body); font-size:15px; font-weight:500;
+    color:var(--moss-muted); margin:0 0 var(--space-2);
+  }
+  h1.headline{
+    font-size:clamp(32px,6vw,52px);
+    line-height:1.2; margin:0 0 var(--space-5); color:var(--moss);
+  }
+  h1.headline .accent{color:var(--plum);}
+
+  .hero-sub{
+    max-width:58ch; color:var(--moss-muted); font-size:17px; margin:0 0 var(--space-6);
+  }
+  .hero-sub strong{color:var(--moss); font-weight:600;}
+
+  .cta-row{display:flex; flex-wrap:wrap; gap:var(--space-3);}
+  .btn{
+    font-family:var(--font-body); font-size:14px; font-weight:600;
+    padding:12px 24px; border-radius:var(--radius); text-decoration:none;
+    display:inline-block; border:1.5px solid transparent;
+    transition:background var(--motion), box-shadow var(--motion), color var(--motion), transform var(--motion);
+  }
+  .btn.primary{
+    background:var(--teal); color:var(--paper); box-shadow:var(--shadow-raised);
+  }
+  .btn.primary:hover{background:var(--teal-hover); transform:translateY(-1px);}
+  .btn.primary:active{box-shadow:var(--shadow-rest); transform:translateY(0);}
+  .btn.secondary{
+    background:transparent; color:var(--plum); border-color:var(--plum);
+  }
+  .btn.secondary:hover{background:var(--tag-plum-bg);}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:var(--space-8) 0;}
+  .section-tag{
+    font-family:var(--font-body); font-size:13px; font-weight:600; color:var(--teal);
+    letter-spacing:.06em; text-transform:uppercase; margin:0 0 var(--space-2);
+  }
+  h2{font-size:clamp(26px,4vw,35px); margin:0 0 var(--space-6);}
+
+  /* ---------- ABOUT / TIMELINE ---------- */
+  .bio{max-width:64ch; color:var(--moss-muted); font-size:17px; margin-bottom:var(--space-7);}
+  .bio strong{color:var(--moss); font-weight:600;}
+
+  .timeline{border-left:2px solid var(--line); padding-left:var(--space-5); display:grid; gap:var(--space-6);}
+  .tl-item{position:relative;}
+  .tl-item::before{
+    content:""; position:absolute; left:calc(-1 * var(--space-5) - 5px); top:6px;
+    width:10px; height:10px; border-radius:50%;
+    background:var(--paper); border:2px solid var(--teal);
+  }
+  .tl-item.current::before{background:var(--plum); border-color:var(--plum);}
+  .tl-role{font-family:var(--font-body); font-size:13px; font-weight:700; color:var(--plum); margin:0 0 var(--space-1); letter-spacing:.01em;}
+  .tl-item:not(.current) .tl-role{color:var(--teal);}
+  .tl-desc{margin:0; color:var(--moss-muted); font-size:16px;}
+  .tl-desc strong{color:var(--moss);}
+
+  /* ---------- PROJECTS (cards) ---------- */
+  .log-entry{
+    background:var(--paper);
+    border-radius:var(--radius);
+    padding:var(--space-6);
+    margin-bottom:var(--space-5);
+    box-shadow:var(--shadow-rest);
+    transition:box-shadow var(--motion), transform var(--motion);
+  }
+  .log-entry:hover{box-shadow:var(--shadow-raised); transform:translateY(-2px);}
+  .log-title{
+    font-family:var(--font-heading); font-size:23px; font-weight:400;
+    color:var(--moss); margin:0 0 var(--space-1);
+  }
+  .log-kicker{
+    font-family:var(--font-body); font-size:12px; font-weight:600; color:var(--moss-muted);
+    text-transform:uppercase; letter-spacing:.05em; margin:0 0 var(--space-5);
+  }
+  .translate-pair{display:grid; gap:var(--space-3);}
+  .t-tech, .t-human{
+    display:grid; grid-template-columns:20px 1fr; gap:var(--space-2); align-items:start;
+  }
+  .t-tech .mark{color:var(--teal); font-weight:700;}
+  .t-human .mark{color:var(--plum); font-weight:700;}
+  .t-tech p{font-size:14.5px; color:var(--moss-muted); margin:0; line-height:1.55;}
+  .t-human p{font-size:16px; color:var(--moss); margin:0; line-height:1.55;}
+  .log-link{
+    display:inline-block; margin-top:var(--space-5); font-size:13px; font-weight:600;
+    color:var(--teal); text-decoration:underline; text-decoration-color:transparent;
+    transition:text-decoration-color 150ms ease;
+  }
+  .log-link:hover{text-decoration-color:currentColor;}
+
+  /* ---------- TRACK RECORD (Anchor band + bleeding stat header) ---------- */
+  .anchor-band{
+    background:var(--teal-deep); color:var(--paper);
+    border-radius:var(--radius); box-shadow:var(--shadow-floating);
+    padding:var(--space-7) var(--space-6) calc(var(--space-9) + var(--space-3));
+  }
+  .anchor-band .section-tag{color:rgba(236,235,226,0.75);}
+  .anchor-band h2{color:var(--paper); margin-bottom:var(--space-2);}
+  .anchor-band .anchor-sub{color:rgba(236,235,226,0.8); font-size:16px; margin:0; max-width:56ch;}
+
+  .stats{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:var(--space-5);
+    margin-top:calc(-1 * var(--space-8));
+  }
+  .stat{
+    background:var(--paper); border-radius:14px; padding:var(--space-5);
+    box-shadow:var(--shadow-floating);
+  }
+  .stat-badge{
+    width:36px; height:36px; border-radius:10px; background:var(--tag-teal-bg);
+    display:flex; align-items:center; justify-content:center; margin-bottom:var(--space-4);
+  }
+  .stat-badge svg{width:18px; height:18px; stroke:var(--teal); fill:none; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round;}
+  .stat-num{
+    font-family:var(--font-heading); font-size:30px; font-weight:500; color:var(--moss);
+    margin:0 0 var(--space-1);
+  }
+  .stat-label{margin:0; color:var(--moss-muted); font-size:14px; line-height:1.5;}
+
+  /* ---------- FOOTER ---------- */
+  footer{padding:var(--space-8) 0 var(--space-9);}
+  footer .card{
+    background:var(--paper); border-radius:var(--radius); padding:var(--space-7) var(--space-6);
+    box-shadow:var(--shadow-rest);
+  }
+  footer h2{margin-bottom:var(--space-3);}
+  .contact-row{display:flex; flex-wrap:wrap; gap:var(--space-5); font-size:14px; font-weight:600; margin-top:var(--space-5);}
+  .contact-row a{color:var(--teal); text-decoration:underline; text-decoration-color:transparent; transition:text-decoration-color 150ms ease;}
+  .contact-row a:hover{text-decoration-color:currentColor;}
+  .fine-print{color:var(--moss-muted); font-size:13px; margin-top:var(--space-6);}
+
+  @media (max-width:560px){
+    .nav-outer{top:var(--space-3); padding:0 var(--space-3);}
+    nav .inner{padding:var(--space-3) var(--space-4);}
+    nav ul{gap:var(--space-4);}
+    header.hero{padding:var(--space-7) 0 var(--space-6);}
+    section{padding:var(--space-7) 0;}
+    .anchor-band{padding:var(--space-6) var(--space-5) calc(var(--space-8) + var(--space-2));}
+    .stats{margin-top:calc(-1 * var(--space-7));}
+    footer .card{padding:var(--space-6) var(--space-4);}
+    .t-tech, .t-human{grid-template-columns:16px 1fr;}
+  }
+
+  @media print{
+    html, body{background:#fff !important;}
+    *{-webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; box-shadow:none !important;}
+    .nav-outer{position:static;}
+    section, .log-entry, .stat, .tl-item{break-inside:avoid;}
+    p{orphans:3; widows:3;}
+  }
+</style>
+</head>
+<body>
+
+<div class="nav-outer">
+  <nav>
+    <div class="inner">
+      <a class="brand" href="#top">Bob<span>.</span>Mayer</a>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#record">Track Record</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <p class="eyebrow">Solutions Engineer — reads both languages</p>
+    <p class="translate-line">"The API returns a 429 on rate limit exceeded."</p>
+    <h1 class="headline">I turn that into: <span class="accent">"just space out your requests — here's how."</span></h1>
+    <p class="hero-sub">
+      I'm <strong>Bob</strong>. Nine years in the classroom, five years at Clever, and most
+      recently Solutions Engineer at Edia, a K–12 AI company spanning AI math, AI attendance,
+      and district intelligence — one skill carried through
+      all of it: <strong>translating technical complexity into plain English</strong> — for
+      teachers, districts, and engineering teams alike.
+    </p>
+    <div class="cta-row">
+      <a class="btn primary" href="#projects">See the work</a>
+      <a class="btn secondary" href="mailto:bob.a.mayer@gmail.com">Email me</a>
+      <a class="btn secondary" href="https://www.linkedin.com/in/Bob-Mayer" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <p class="section-tag">About</p>
+    <h2>Teacher first. Translator always.</h2>
+    <p class="bio">
+      I spent <strong>nine years teaching K–12</strong> before moving into edtech —
+      first in <strong>Solutions Engineering and Technical Support at Clever</strong>,
+      most recently as the <strong>first Solutions Engineer at Edia</strong>. Every stop has needed
+      the same core move: sit between a technical system and the person who has to trust
+      it, and make sure nothing gets lost in the handoff.
+    </p>
+    <div class="timeline">
+      <div class="tl-item">
+        <p class="tl-role">K–12 Classroom Teacher · ~9 years</p>
+        <p class="tl-desc">Learned to explain hard things to people who didn't ask to find them hard — the root skill everything after this drew on.</p>
+      </div>
+      <div class="tl-item">
+        <p class="tl-role">Solutions Engineering &amp; Technical Support · Clever · ~5 years</p>
+        <p class="tl-desc"><strong>Prevented churn</strong> across 100k-student districts, led the <strong>Infinite Campus API deprecation</strong> with 100% retention, and <strong>redesigned onboarding</strong> for a 55+ person team — cutting ramp time by 1–3 weeks and escalations by roughly half.</p>
+      </div>
+      <div class="tl-item current">
+        <p class="tl-role">Solutions Engineer · Edia · 2026</p>
+        <p class="tl-desc">First person in this role at the company — built the onboarding playbook from scratch, since none existed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <p class="section-tag">Translation Log</p>
+    <h2>What I've built, in both languages</h2>
+
+    <div class="log-entry">
+      <p class="log-title">Of Note</p>
+      <p class="log-kicker">AI note digitizer · deployed</p>
+      <div class="translate-pair">
+        <div class="t-tech"><span class="mark">&gt;</span><p>Takes a photo of handwritten notes, extracts dates, next steps, and context via a vision model, and applies a labeling system to organize the output.</p></div>
+        <div class="t-human"><span class="mark">“</span><p>Snap a photo of your messy handwritten notes — it pulls out what actually matters and files it so you can find it later.</p></div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <p class="log-title">Grocery Consumption Clock</p>
+      <p class="log-kicker">Household grocery intelligence tool · published, data-backed</p>
+      <div class="translate-pair">
+        <div class="t-tech"><span class="mark">&gt;</span><p>Parsed a manual Walmart order-history export (61 orders, 1,390 line items) against a 110-item staples list, then classified each item into Buy Now, Stock-Up, Watch, Flat, or Learning based on rebuy cadence and price-vs-best-ever, with editable pricing that persists to a database. A recurring weekly-circular scan checks Harris Teeter, Food Lion, and Target ads against the watch list and updates the Clock automatically.</p></div>
+        <div class="t-human"><span class="mark">“</span><p>It learns your family's actual grocery rhythm from your order history, then automatically checks this week's store sales flyers and tells you exactly what to stock up on and what to skip.</p></div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <p class="log-title">Six-Week Habit Tracker</p>
+      <p class="log-kicker">Personal habit tracker · GitHub Pages</p>
+      <div class="translate-pair">
+        <div class="t-tech"><span class="mark">&gt;</span><p>A static site implementing a six-week habit-cycle model, currently evaluating cross-device persistence for a no-backend architecture.</p></div>
+        <div class="t-human"><span class="mark">“</span><p>A habit tracker built around six-week seasons instead of daily streaks — because real change happens in cycles, not single days.</p></div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <p class="log-title">Chronos</p>
+      <p class="log-kicker">AI executive assistant · built on chronobiology (circadian &amp; ultradian rhythms) · in development</p>
+      <div class="translate-pair">
+        <div class="t-tech"><span class="mark">&gt;</span><p>An AI executive assistant that models your circadian and ultradian rhythms alongside sleep, mood, and weekly load to sequence your day — model-agnostic across Claude, ChatGPT, and Gemini, with a mid-day replanning loop.</p></div>
+        <div class="t-human"><span class="mark">“</span><p>Less a planner, more an assistant who actually knows when you're sharp and when you're running on fumes — and builds your day around that, not against it.</p></div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <p class="log-title">Google Chat MCP Server</p>
+      <p class="log-kicker">MCP server · built with Claude Code · open source on GitHub</p>
+      <div class="translate-pair">
+        <div class="t-tech"><span class="mark">&gt;</span><p>An MCP server that exposes Google Chat — sending messages, listing spaces, and searching message history — as tools any MCP-compatible LLM client can call.</p></div>
+        <div class="t-human"><span class="mark">“</span><p>It lets Claude read and post to your Google Chat spaces directly, instead of you copy-pasting between the two.</p></div>
+      </div>
+      <a class="log-link" href="https://github.com/bobamayer/google-chat-mcp" target="_blank" rel="noopener">View on GitHub →</a>
+    </div>
+
+    <div class="log-entry">
+      <p class="log-title">RootNote</p>
+      <p class="log-kicker">AI-assisted chord progression generator · deployed on Cloudflare Pages</p>
+      <div class="translate-pair">
+        <div class="t-tech"><span class="mark">&gt;</span><p>Generates chord progressions from structured inputs — instrument, genre, key, bar count, and complexity — plus a natural-language "feel" field for describing the mood you're after in plain words.</p></div>
+        <div class="t-human"><span class="mark">“</span><p>Tell it the instrument, key, and vibe you're going for — even in your own words, like "moody and unresolved" — and it hands you a progression that fits.</p></div>
+      </div>
+      <a class="log-link" href="https://github.com/bobamayer/RootNote" target="_blank" rel="noopener">View on GitHub →</a>
+    </div>
+
+    <div class="log-entry">
+      <p class="log-title">The Ledger</p>
+      <p class="log-kicker">Dungeon! treasure tracker · static web app · GitHub Pages</p>
+      <div class="translate-pair">
+        <div class="t-tech"><span class="mark">&gt;</span><p>Scoped a real family scorekeeping problem — multiple players, cross-device tracking, awkward mental math — into a zero-backend static app: vanilla HTML/CSS/JS, localStorage persistence per device, no accounts, no sync infrastructure required.</p></div>
+        <div class="t-human"><span class="mark">“</span><p>My kids kept losing track of their treasure mid-game, so I gave each of them their own scoreboard — pick a class, tap to track, no login, nothing to set up.</p></div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <p class="log-title">SE Enablement, from Zero</p>
+      <p class="log-kicker">Edia onboarding infrastructure · internal</p>
+      <div class="translate-pair">
+        <div class="t-tech"><span class="mark">&gt;</span><p>Built a CSE reference doc, a Claude Project knowledge base, and a recurring content pipeline as the first Solutions Engineer hire — no prior playbook existed.</p></div>
+        <div class="t-human"><span class="mark">“</span><p>When I joined, there was no manual for this role — so I wrote one, for myself and whoever comes after me.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="record">
+  <div class="wrap">
+    <div class="anchor-band">
+      <p class="section-tag">Track Record</p>
+      <h2>Numbers from the Clever years</h2>
+      <p class="anchor-sub">What "translating technical complexity" actually moved, in the accounts that mattered most.</p>
+    </div>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-badge"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div>
+        <p class="stat-num">100k+</p>
+        <p class="stat-label">student-district churn prevented through direct account intervention</p>
+      </div>
+      <div class="stat">
+        <div class="stat-badge"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div>
+        <p class="stat-num">100%</p>
+        <p class="stat-label">retention through the Infinite Campus API deprecation I led</p>
+      </div>
+      <div class="stat">
+        <div class="stat-badge"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div>
+        <p class="stat-num">1–3 wks</p>
+        <p class="stat-label">cut from ramp time after redesigning onboarding for 55+ people</p>
+      </div>
+      <div class="stat">
+        <div class="stat-badge"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div>
+        <p class="stat-num">~50%</p>
+        <p class="stat-label">reduction in escalations from that same onboarding redesign</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="card">
+      <p class="section-tag">Get in Touch</p>
+      <h2>Let's talk translation</h2>
+      <p class="bio" style="margin-bottom:0;">I'm looking for my next Solutions Engineering role. If you're hiring for one that needs someone fluent in both the technical and the human side of the table, I'd like to hear about it.</p>
+      <div class="contact-row">
+        <a href="mailto:bob.a.mayer@gmail.com">bob.a.mayer@gmail.com</a>
+        <a href="https://www.linkedin.com/in/Bob-Mayer" target="_blank" rel="noopener">linkedin.com/in/Bob-Mayer</a>
+      </div>
+      <p class="fine-print">Built and hosted on GitHub Pages.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
